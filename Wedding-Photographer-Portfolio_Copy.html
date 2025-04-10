@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wedding Photographer Portfolio</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#8B5D3B',secondary:'#F0E6D8',accent:'#D98555',tertiary:'#3D5A6C',success:'#5B8A72',warning:'#E6B655'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'4px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Cormorant Garamond', serif;
+background-color: #FFFAF5;
+color: #333333;
+}
+.hero-carousel {
+position: relative;
+height: 360px;
+overflow: hidden;
+}
+.hero-carousel img {
+position: absolute;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+object-fit: cover;
+opacity: 0;
+transition: opacity 1.5s ease-in-out;
+}
+.hero-carousel img.active {
+opacity: 1;
+}
+.gradient-overlay {
+position: absolute;
+bottom: 0;
+left: 0;
+width: 100%;
+height: 60%;
+background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3), transparent);
+}
+.masonry-grid {
+column-count: 2;
+column-gap: 8px;
+}
+.masonry-item {
+break-inside: avoid;
+margin-bottom: 8px;
+}
+.category-scroll {
+overflow-x: auto;
+scrollbar-width: none;
+-ms-overflow-style: none;
+}
+.category-scroll::-webkit-scrollbar {
+display: none;
+}
+.photo-modal {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0,0,0,0.9);
+z-index: 50;
+display: none;
+justify-content: center;
+align-items: center;
+}
+.photo-modal img {
+max-width: 90%;
+max-height: 90%;
+object-fit: contain;
+}
+</style>
+</head>
+<body class="text-primary">
+<!-- Navigation Bar -->
+<nav class="fixed top-0 w-full bg-white shadow-md z-40 px-4 py-3 flex justify-between items-center">
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-menu-line ri-lg cursor-pointer"></i>
+</div>
+<h1 class="font-['Pacifico'] text-xl">logo</h1>
+<div class="w-8 h-8 flex items-center justify-center">
+<i class="ri-search-line ri-lg cursor-pointer"></i>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="pt-14 pb-16">
+<!-- Hero Section -->
+<section class="hero-carousel relative mb-6">
+<img src="https://public.readdy.ai/ai/img_res/7aea6a657f44be0f4526fcf554e2fab9.jpg" alt="Wedding Photography" class="active">
+<img src="https://public.readdy.ai/ai/img_res/4e2b031daeefa04e3d2b7738aea8bb60.jpg" alt="Wedding Photography">
+<img src="https://public.readdy.ai/ai/img_res/0f3a2ad7116bb2c7e12efb1417868950.jpg" alt="Wedding Photography">
+<div class="gradient-overlay"></div>
+<div class="absolute bottom-6 left-0 w-full text-center text-white px-6">
+<h2 class="text-2xl font-light mb-2">Capturing Timeless Moments</h2>
+<p class="text-sm font-light">Premium wedding photography for your special day</p>
+</div>
+</section>
+<!-- Categories Section -->
+<section class="mb-8 px-4">
+<div class="category-scroll flex space-x-4 pb-2">
+<button class="px-4 py-2 bg-primary text-white rounded-full text-sm whitespace-nowrap !rounded-button cursor-pointer shadow-md">All Weddings</button>
+<button class="px-4 py-2 bg-accent text-white rounded-full text-sm whitespace-nowrap !rounded-button cursor-pointer shadow-md">Engagements</button>
+<button class="px-4 py-2 bg-tertiary text-white rounded-full text-sm whitespace-nowrap !rounded-button cursor-pointer shadow-md">Pre-wedding</button>
+<button class="px-4 py-2 bg-success text-white rounded-full text-sm whitespace-nowrap !rounded-button cursor-pointer shadow-md">Ceremonies</button>
+<button class="px-4 py-2 bg-warning text-tertiary rounded-full text-sm whitespace-nowrap !rounded-button cursor-pointer shadow-md">Receptions</button>
+</div>
+</section>
+<!-- Portfolio Grid -->
+<section class="px-4 mb-8">
+<h3 class="text-xl mb-4 font-medium">Featured Work</h3>
+<div class="masonry-grid">
+<div class="masonry-item cursor-pointer" data-img="1">
+<img src="https://public.readdy.ai/ai/img_res/eba2976a449230cb840568683386bac4.jpg" alt="Wedding Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="2">
+<img src="https://public.readdy.ai/ai/img_res/6602d54426ca3a78dab0ef42fadcb01e.jpg" alt="Wedding Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="3">
+<img src="https://public.readdy.ai/ai/img_res/7f053b780865adadad046dfd0ea870cb.jpg" alt="Wedding Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="4">
+<img src="https://public.readdy.ai/ai/img_res/8214ece9b28adeb2546918018d69643e.jpg" alt="Wedding Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="5">
+<img src="https://public.readdy.ai/ai/img_res/4a028fa9df55d0d442826d700ba311bd.jpg" alt="Wedding Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="6">
+<img src="https://public.readdy.ai/ai/img_res/9c5d18c8cebcf2c9d947b9f7351df4d3.jpg" alt="Wedding Photo" class="w-full h-auto rounded">
+</div>
+</div>
+<div class="text-center mt-4">
+<button class="px-6 py-2 border-2 border-primary text-primary rounded-full text-sm !rounded-button cursor-pointer hover:bg-primary hover:text-white transition-colors duration-300 shadow-md">View More</button>
+</div>
+</section>
+<!-- About Section -->
+<section class="px-4 py-6 bg-gradient-to-br from-secondary to-white mb-8 shadow-md rounded-lg mx-2">
+<div class="flex items-center mb-4">
+<div class="w-20 h-20 rounded-full overflow-hidden mr-4">
+<img src="https://public.readdy.ai/ai/img_res/e4aa27ea55591ea1c2c5f96a7ce23ad0.jpg" alt="Photographer" class="w-full h-full object-cover">
+</div>
+<div>
+<h3 class="text-xl font-medium">Emma Richardson</h3>
+<p class="text-sm text-gray-600">Wedding Photographer</p>
+</div>
+</div>
+<p class="text-base mb-4">With over 10 years of experience capturing love stories, I believe in creating authentic, timeless images that will be cherished for generations. My approach combines fine art photography with genuine emotion.</p>
+<button class="px-6 py-2 bg-tertiary text-white rounded-full text-sm !rounded-button cursor-pointer shadow-md hover:bg-opacity-90 transition-colors duration-300">About Me</button>
+</section>
+<!-- Testimonials -->
+<section class="px-4 mb-8">
+<h3 class="text-xl mb-4 font-medium">Client Love</h3>
+<div class="bg-white rounded-lg shadow-lg p-4 mb-4 border-l-4 border-accent">
+<div class="flex items-center mb-2">
+<div class="flex text-yellow-400">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+<span class="ml-2 text-sm text-gray-600">April 2, 2025</span>
+</div>
+<p class="italic text-base mb-2">"Emma captured our wedding day perfectly. Her eye for detail and ability to catch candid moments gave us photos we'll treasure forever."</p>
+<p class="text-sm font-medium">— Olivia & James Wilson</p>
+</div>
+<div class="bg-white rounded-lg shadow-lg p-4 border-l-4 border-tertiary">
+<div class="flex items-center mb-2">
+<div class="flex text-yellow-400">
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+<i class="ri-star-fill"></i>
+</div>
+<span class="ml-2 text-sm text-gray-600">March 15, 2025</span>
+</div>
+<p class="italic text-base mb-2">"Working with Emma was the best decision we made for our wedding. She's professional, creative, and made us feel completely comfortable."</p>
+<p class="text-sm font-medium">— Sophia & Michael Thompson</p>
+</div>
+<div class="text-center mt-4">
+<button class="px-6 py-2 border-2 border-accent text-accent rounded-full text-sm !rounded-button cursor-pointer hover:bg-accent hover:text-white transition-colors duration-300 shadow-md">Read More Reviews</button>
+</div>
+</section>
+<!-- Packages Preview -->
+<section class="px-4 mb-8">
+<h3 class="text-xl mb-4 font-medium">Packages</h3>
+<div class="bg-white rounded-lg shadow-lg p-4 mb-4 border-l-4 border-accent">
+<h4 class="text-lg font-medium mb-2">Essential Collection</h4>
+<p class="text-2xl font-light mb-2">$2,400</p>
+<ul class="text-sm mb-4">
+<li class="flex items-start mb-2">
+<i class="ri-check-line text-success mr-2 mt-1"></i>
+<span>6 hours of coverage</span>
+</li>
+<li class="flex items-start mb-2">
+<i class="ri-check-line text-success mr-2 mt-1"></i>
+<span>1 photographer</span>
+</li>
+<li class="flex items-start mb-2">
+<i class="ri-check-line text-success mr-2 mt-1"></i>
+<span>Online gallery with 300+ edited images</span>
+</li>
+<li class="flex items-start">
+<i class="ri-check-line text-success mr-2 mt-1"></i>
+<span>Engagement session (1 hour)</span>
+</li>
+</ul>
+<button class="w-full py-2 bg-success text-white rounded-full text-sm !rounded-button cursor-pointer shadow-md hover:bg-opacity-90 transition-colors duration-300">View Details</button>
+</div>
+<div class="text-center">
+<button class="px-6 py-2 border-2 border-tertiary text-tertiary rounded-full text-sm !rounded-button cursor-pointer hover:bg-tertiary hover:text-white transition-colors duration-300 shadow-md">View All Packages</button>
+</div>
+</section>
+<!-- Contact Section -->
+<section class="px-4 mb-8">
+<h3 class="text-xl mb-4 font-medium">Get in Touch</h3>
+<form class="mb-6">
+<div class="mb-4">
+<label for="name" class="block text-sm mb-1">Your Name</label>
+<input type="text" id="name" class="w-full px-3 py-2 border-2 border-secondary rounded !rounded-button focus:border-accent focus:outline-none transition-colors duration-300 shadow-sm" placeholder="John & Jane Doe">
+</div>
+<div class="mb-4">
+<label for="email" class="block text-sm mb-1">Email Address</label>
+<input type="email" id="email" class="w-full px-3 py-2 border-2 border-secondary rounded !rounded-button focus:border-accent focus:outline-none transition-colors duration-300 shadow-sm" placeholder="your@email.com">
+</div>
+<div class="mb-4">
+<label for="date" class="block text-sm mb-1">Wedding Date</label>
+<input type="date" id="date" class="w-full px-3 py-2 border-2 border-secondary rounded !rounded-button focus:border-accent focus:outline-none transition-colors duration-300 shadow-sm">
+</div>
+<div class="mb-4">
+<label for="message" class="block text-sm mb-1">Your Message</label>
+<textarea id="message" rows="4" class="w-full px-3 py-2 border-2 border-secondary rounded !rounded-button focus:border-accent focus:outline-none transition-colors duration-300 shadow-sm" placeholder="Tell me about your wedding plans..."></textarea>
+</div>
+<button type="submit" class="w-full py-3 bg-accent text-white rounded-full font-medium !rounded-button cursor-pointer shadow-lg hover:bg-opacity-90 transition-colors duration-300">Send Inquiry</button>
+</form>
+<div class="flex flex-col items-center">
+<p class="text-center mb-4">Or reach out directly:</p>
+<div class="flex space-x-4 mb-4">
+<a href="tel:+1234567890" class="w-10 h-10 flex items-center justify-center bg-tertiary rounded-full cursor-pointer shadow-md hover:bg-opacity-80 transition-colors duration-300">
+<i class="ri-phone-line text-white"></i>
+</a>
+<a href="mailto:emma@weddingphotography.com" class="w-10 h-10 flex items-center justify-center bg-accent rounded-full cursor-pointer shadow-md hover:bg-opacity-80 transition-colors duration-300">
+<i class="ri-mail-line text-white"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-success rounded-full cursor-pointer shadow-md hover:bg-opacity-80 transition-colors duration-300">
+<i class="ri-instagram-line text-white"></i>
+</a>
+<a href="#" class="w-10 h-10 flex items-center justify-center bg-warning rounded-full cursor-pointer shadow-md hover:bg-opacity-80 transition-colors duration-300">
+<i class="ri-pinterest-line text-tertiary"></i>
+</a>
+</div>
+<p class="text-sm text-center text-gray-600">Based in New York City • Available Worldwide</p>
+</div>
+</section>
+</main>
+<!-- Tab Bar -->
+<nav class="fixed bottom-0 w-full bg-white border-t border-gray-200 px-2 py-2 grid grid-cols-4 z-40 shadow-lg">
+<a href="#" class="flex flex-col items-center justify-center cursor-pointer">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-home-5-fill text-primary"></i>
+</div>
+<span class="text-xs mt-1 text-primary font-medium">Home</span>
+</a>
+<a href="https://readdy.ai/home/56f35fab-9324-48b8-a002-f91efb5f78bc/36addc1a-160c-4dde-b577-59de1463c6b4" data-readdy="true" class="flex flex-col items-center justify-center cursor-pointer">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-gallery-line text-accent"></i>
+</div>
+<span class="text-xs mt-1 text-accent">Portfolio</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center cursor-pointer">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-price-tag-3-line text-tertiary"></i>
+</div>
+<span class="text-xs mt-1 text-tertiary">Packages</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center cursor-pointer">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-chat-1-line text-success"></i>
+</div>
+<span class="text-xs mt-1 text-success">Contact</span>
+</a>
+</nav>
+<!-- Photo Modal -->
+<div class="photo-modal" id="photoModal">
+<img src="" alt="Enlarged Wedding Photo" id="modalImage">
+<button class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-accent bg-opacity-90 rounded-full text-white cursor-pointer shadow-lg hover:bg-opacity-100 transition-colors duration-300" id="closeModal">
+<i class="ri-close-line ri-lg"></i>
+</button>
+</div>
+<script>
+// Hero Carousel
+const carouselImages = document.querySelectorAll('.hero-carousel img');
+let currentImageIndex = 0;
+function rotateCarouselImages() {
+carouselImages[currentImageIndex].classList.remove('active');
+currentImageIndex = (currentImageIndex + 1) % carouselImages.length;
+carouselImages[currentImageIndex].classList.add('active');
+}
+setInterval(rotateCarouselImages, 5000);
+// Photo Modal
+const photoItems = document.querySelectorAll('.masonry-item');
+const photoModal = document.getElementById('photoModal');
+const modalImage = document.getElementById('modalImage');
+const closeModal = document.getElementById('closeModal');
+photoItems.forEach(item => {
+item.addEventListener('click', () => {
+const imgSrc = item.querySelector('img').src;
+modalImage.src = imgSrc;
+photoModal.style.display = 'flex';
+document.body.style.overflow = 'hidden';
+});
+});
+closeModal.addEventListener('click', () => {
+photoModal.style.display = 'none';
+document.body.style.overflow = 'auto';
+});
+photoModal.addEventListener('click', (e) => {
+if (e.target === photoModal) {
+photoModal.style.display = 'none';
+document.body.style.overflow = 'auto';
+}
+});
+// Category buttons
+const categoryButtons = document.querySelectorAll('.category-scroll button');
+categoryButtons.forEach(button => {
+button.addEventListener('click', () => {
+categoryButtons.forEach(btn => {
+btn.classList.remove('bg-primary', 'text-white');
+btn.classList.add('bg-secondary', 'text-primary');
+});
+button.classList.remove('bg-secondary', 'text-primary');
+button.classList.add('bg-primary', 'text-white');
+});
+});
+</script>
+</body>
+</html>
