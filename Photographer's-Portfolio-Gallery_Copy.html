@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio - Wedding Photographer</title>
+<script src="https://cdn.tailwindcss.com/3.4.16"></script>
+<script>tailwind.config={theme:{extend:{colors:{primary:'#8B5D3B',secondary:'#F0E6D8',accent:'#D98555',tertiary:'#3D5A6C',success:'#5B8A72',warning:'#E6B655'},borderRadius:{'none':'0px','sm':'4px',DEFAULT:'4px','md':'12px','lg':'16px','xl':'20px','2xl':'24px','3xl':'32px','full':'9999px','button':'8px'}}}}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.6.0/remixicon.min.css" rel="stylesheet">
+<style>
+:where([class^="ri-"])::before { content: "\f3c2"; }
+body {
+font-family: 'Cormorant Garamond', serif;
+background-color: #FFFAF5;
+color: #333333;
+}
+.masonry-grid {
+column-count: 3;
+column-gap: 8px;
+}
+.masonry-item {
+break-inside: avoid;
+margin-bottom: 8px;
+}
+.category-scroll {
+overflow-x: auto;
+scrollbar-width: none;
+-ms-overflow-style: none;
+}
+.category-scroll::-webkit-scrollbar {
+display: none;
+}
+.photo-modal {
+position: fixed;
+top: 0;
+left: 0;
+width: 100%;
+height: 100%;
+background-color: rgba(0,0,0,0.9);
+z-index: 50;
+display: none;
+justify-content: center;
+align-items: center;
+}
+.photo-modal img {
+max-width: 90%;
+max-height: 90%;
+object-fit: contain;
+}
+.modal-nav {
+position: absolute;
+top: 50%;
+transform: translateY(-50%);
+width: 100%;
+display: flex;
+justify-content: space-between;
+padding: 0 20px;
+z-index: 60;
+}
+.modal-nav button {
+width: 40px;
+height: 40px;
+border-radius: 50%;
+background-color: rgba(255,255,255,0.2);
+display: flex;
+align-items: center;
+justify-content: center;
+color: white;
+transition: background-color 0.3s;
+}
+.modal-nav button:hover {
+background-color: rgba(255,255,255,0.3);
+}
+.modal-info {
+position: absolute;
+bottom: 20px;
+left: 0;
+width: 100%;
+text-align: center;
+color: white;
+padding: 0 20px;
+}
+.collection-grid {
+display: grid;
+grid-template-columns: repeat(3, 1fr);
+gap: 8px;
+}
+.collection-item {
+position: relative;
+aspect-ratio: 1/1;
+overflow: hidden;
+border-radius: 4px;
+}
+.collection-item img {
+width: 100%;
+height: 100%;
+object-fit: cover;
+transition: transform 0.3s ease;
+}
+.collection-item:hover img {
+transform: scale(1.05);
+}
+.sticky-categories {
+position: sticky;
+top: 52px;
+background-color: #FFFAF5;
+z-index: 30;
+padding: 8px 0;
+}
+</style>
+</head>
+<body class="text-primary">
+<!-- Navigation Bar -->
+<nav class="fixed top-0 w-full bg-white shadow-md z-40 px-4 py-3 flex justify-between items-center">
+<a href="https://readdy.ai/home/56f35fab-9324-48b8-a002-f91efb5f78bc/86e6c8c3-4093-40a7-a0f9-f0d72f3ab524" data-readdy="true" class="w-8 h-8 flex items-center justify-center cursor-pointer">
+<i class="ri-arrow-left-s-line ri-lg"></i>
+</a>
+<h1 class="font-medium text-xl">Portfolio</h1>
+<div class="w-8 h-8 flex items-center justify-center cursor-pointer">
+<i class="ri-search-line ri-lg"></i>
+</div>
+</nav>
+<!-- Main Content -->
+<main class="pt-14 pb-16">
+<!-- Categories Filter -->
+<section class="sticky-categories">
+<div class="category-scroll flex space-x-3 px-4 py-2">
+<button class="px-4 py-2 bg-primary text-white rounded-full text-sm whitespace-nowrap !rounded-button cursor-pointer shadow-md">All</button>
+<button class="px-4 py-2 bg-secondary text-primary rounded-full text-sm whitespace-nowrap !rounded-button cursor-pointer shadow-md">Weddings</button>
+<button class="px-4 py-2 bg-secondary text-primary rounded-full text-sm whitespace-nowrap !rounded-button cursor-pointer shadow-md">Engagements</button>
+<button class="px-4 py-2 bg-secondary text-primary rounded-full text-sm whitespace-nowrap !rounded-button cursor-pointer shadow-md">Pre-wedding</button>
+<button class="px-4 py-2 bg-secondary text-primary rounded-full text-sm whitespace-nowrap !rounded-button cursor-pointer shadow-md">Ceremonies</button>
+<button class="px-4 py-2 bg-secondary text-primary rounded-full text-sm whitespace-nowrap !rounded-button cursor-pointer shadow-md">Receptions</button>
+</div>
+</section>
+<!-- Featured Collections -->
+<section class="px-4 mt-4 mb-6">
+<div class="flex justify-between items-center mb-3">
+<h3 class="text-xl font-medium">Featured Collections</h3>
+<a href="#" class="text-sm text-accent cursor-pointer">View All</a>
+</div>
+<div class="overflow-x-auto flex space-x-3 pb-2">
+<div class="min-w-[150px] w-[150px] rounded overflow-hidden shadow-md cursor-pointer">
+<div class="h-[120px] overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/e4aa27ea55591ea1c2c5f96a7ce23ad0.jpg" alt="Luxury Venues" class="w-full h-full object-cover">
+</div>
+<div class="p-2 bg-white">
+<h4 class="font-medium text-sm">Luxury Venues</h4>
+<p class="text-xs text-gray-600">24 photos</p>
+</div>
+</div>
+<div class="min-w-[150px] w-[150px] rounded overflow-hidden shadow-md cursor-pointer">
+<div class="h-[120px] overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/e4aa27ea55591ea1c2c5f96a7ce23ad0.jpg" alt="Beach Weddings" class="w-full h-full object-cover">
+</div>
+<div class="p-2 bg-white">
+<h4 class="font-medium text-sm">Beach Weddings</h4>
+<p class="text-xs text-gray-600">18 photos</p>
+</div>
+</div>
+<div class="min-w-[150px] w-[150px] rounded overflow-hidden shadow-md cursor-pointer">
+<div class="h-[120px] overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/e4aa27ea55591ea1c2c5f96a7ce23ad0.jpg" alt="Rustic Charm" class="w-full h-full object-cover">
+</div>
+<div class="p-2 bg-white">
+<h4 class="font-medium text-sm">Rustic Charm</h4>
+<p class="text-xs text-gray-600">32 photos</p>
+</div>
+</div>
+<div class="min-w-[150px] w-[150px] rounded overflow-hidden shadow-md cursor-pointer">
+<div class="h-[120px] overflow-hidden">
+<img src="https://public.readdy.ai/ai/img_res/e4aa27ea55591ea1c2c5f96a7ce23ad0.jpg" alt="Winter Magic" class="w-full h-full object-cover">
+</div>
+<div class="p-2 bg-white">
+<h4 class="font-medium text-sm">Winter Magic</h4>
+<p class="text-xs text-gray-600">15 photos</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Recent Weddings -->
+<section class="px-4 mb-8">
+<div class="flex justify-between items-center mb-3">
+<h3 class="text-xl font-medium">Recent Weddings</h3>
+<a href="#" class="text-sm text-accent cursor-pointer">View All</a>
+</div>
+<div class="bg-white rounded-lg shadow-md p-3 mb-4">
+<div class="flex items-center mb-3">
+<h4 class="font-medium">Emily & David</h4>
+<span class="ml-auto text-xs text-gray-500">April 10, 2025</span>
+</div>
+<div class="collection-grid mb-3">
+<div class="collection-item cursor-pointer" data-img="emily1">
+<img src="https://public.readdy.ai/ai/img_res/eba2976a449230cb840568683386bac4.jpg" alt="Wedding Photo" class="w-full h-full object-cover">
+</div>
+<div class="collection-item cursor-pointer" data-img="emily2">
+<img src="https://public.readdy.ai/ai/img_res/6602d54426ca3a78dab0ef42fadcb01e.jpg" alt="Wedding Photo" class="w-full h-full object-cover">
+</div>
+<div class="collection-item cursor-pointer" data-img="emily3">
+<img src="https://public.readdy.ai/ai/img_res/7f053b780865adadad046dfd0ea870cb.jpg" alt="Wedding Photo" class="w-full h-full object-cover">
+</div>
+<div class="collection-item cursor-pointer" data-img="emily4">
+<img src="https://public.readdy.ai/ai/img_res/8214ece9b28adeb2546918018d69643e.jpg" alt="Wedding Photo" class="w-full h-full object-cover">
+</div>
+<div class="collection-item cursor-pointer" data-img="emily5">
+<img src="https://public.readdy.ai/ai/img_res/4a028fa9df55d0d442826d700ba311bd.jpg" alt="Wedding Photo" class="w-full h-full object-cover">
+</div>
+<div class="collection-item cursor-pointer" data-img="emily6">
+<img src="https://public.readdy.ai/ai/img_res/9c5d18c8cebcf2c9d947b9f7351df4d3.jpg" alt="Wedding Photo" class="w-full h-full object-cover">
+</div>
+</div>
+<button class="w-full py-2 border border-primary text-primary rounded-full text-sm !rounded-button cursor-pointer hover:bg-primary hover:text-white transition-colors duration-300">View Album (86 photos)</button>
+</div>
+<div class="bg-white rounded-lg shadow-md p-3">
+<div class="flex items-center mb-3">
+<h4 class="font-medium">Jessica & Michael</h4>
+<span class="ml-auto text-xs text-gray-500">March 28, 2025</span>
+</div>
+<div class="collection-grid mb-3">
+<div class="collection-item cursor-pointer" data-img="jessica1">
+<img src="https://public.readdy.ai/ai/img_res/eba2976a449230cb840568683386bac4.jpg" alt="Wedding Photo" class="w-full h-full object-cover">
+</div>
+<div class="collection-item cursor-pointer" data-img="jessica2">
+<img src="https://public.readdy.ai/ai/img_res/6602d54426ca3a78dab0ef42fadcb01e.jpg" alt="Wedding Photo" class="w-full h-full object-cover">
+</div>
+<div class="collection-item cursor-pointer" data-img="jessica3">
+<img src="https://public.readdy.ai/ai/img_res/7f053b780865adadad046dfd0ea870cb.jpg" alt="Wedding Photo" class="w-full h-full object-cover">
+</div>
+<div class="collection-item cursor-pointer" data-img="jessica4">
+<img src="https://public.readdy.ai/ai/img_res/8214ece9b28adeb2546918018d69643e.jpg" alt="Wedding Photo" class="w-full h-full object-cover">
+</div>
+<div class="collection-item cursor-pointer" data-img="jessica5">
+<img src="https://public.readdy.ai/ai/img_res/4a028fa9df55d0d442826d700ba311bd.jpg" alt="Wedding Photo" class="w-full h-full object-cover">
+</div>
+<div class="collection-item cursor-pointer" data-img="jessica6">
+<img src="https://public.readdy.ai/ai/img_res/9c5d18c8cebcf2c9d947b9f7351df4d3.jpg" alt="Wedding Photo" class="w-full h-full object-cover">
+</div>
+</div>
+<button class="w-full py-2 border border-primary text-primary rounded-full text-sm !rounded-button cursor-pointer hover:bg-primary hover:text-white transition-colors duration-300">View Album (92 photos)</button>
+</div>
+</section>
+<!-- Engagement Sessions -->
+<section class="px-4 mb-8">
+<div class="flex justify-between items-center mb-3">
+<h3 class="text-xl font-medium">Engagement Sessions</h3>
+<a href="#" class="text-sm text-accent cursor-pointer">View All</a>
+</div>
+<div class="masonry-grid">
+<div class="masonry-item cursor-pointer" data-img="eng1">
+<img src="https://public.readdy.ai/ai/img_res/eba2976a449230cb840568683386bac4.jpg" alt="Engagement Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="eng2">
+<img src="https://public.readdy.ai/ai/img_res/6602d54426ca3a78dab0ef42fadcb01e.jpg" alt="Engagement Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="eng3">
+<img src="https://public.readdy.ai/ai/img_res/7f053b780865adadad046dfd0ea870cb.jpg" alt="Engagement Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="eng4">
+<img src="https://public.readdy.ai/ai/img_res/8214ece9b28adeb2546918018d69643e.jpg" alt="Engagement Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="eng5">
+<img src="https://public.readdy.ai/ai/img_res/4a028fa9df55d0d442826d700ba311bd.jpg" alt="Engagement Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="eng6">
+<img src="https://public.readdy.ai/ai/img_res/9c5d18c8cebcf2c9d947b9f7351df4d3.jpg" alt="Engagement Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="eng7">
+<img src="https://public.readdy.ai/ai/img_res/eba2976a449230cb840568683386bac4.jpg" alt="Engagement Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="eng8">
+<img src="https://public.readdy.ai/ai/img_res/6602d54426ca3a78dab0ef42fadcb01e.jpg" alt="Engagement Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="eng9">
+<img src="https://public.readdy.ai/ai/img_res/7f053b780865adadad046dfd0ea870cb.jpg" alt="Engagement Photo" class="w-full h-auto rounded">
+</div>
+</div>
+<div class="text-center mt-4">
+<button class="px-6 py-2 border-2 border-primary text-primary rounded-full text-sm !rounded-button cursor-pointer hover:bg-primary hover:text-white transition-colors duration-300 shadow-md">Load More</button>
+</div>
+</section>
+<!-- Full Portfolio Gallery -->
+<section class="px-4 mb-8">
+<h3 class="text-xl mb-4 font-medium">Complete Portfolio</h3>
+<div class="masonry-grid">
+<div class="masonry-item cursor-pointer" data-img="port1">
+<img src="https://public.readdy.ai/ai/img_res/eba2976a449230cb840568683386bac4.jpg" alt="Wedding Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="port2">
+<img src="https://public.readdy.ai/ai/img_res/6602d54426ca3a78dab0ef42fadcb01e.jpg" alt="Wedding Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="port3">
+<img src="https://public.readdy.ai/ai/img_res/7f053b780865adadad046dfd0ea870cb.jpg" alt="Wedding Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="port4">
+<img src="https://public.readdy.ai/ai/img_res/8214ece9b28adeb2546918018d69643e.jpg" alt="Wedding Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="port5">
+<img src="https://public.readdy.ai/ai/img_res/4a028fa9df55d0d442826d700ba311bd.jpg" alt="Wedding Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="port6">
+<img src="https://public.readdy.ai/ai/img_res/9c5d18c8cebcf2c9d947b9f7351df4d3.jpg" alt="Wedding Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="port7">
+<img src="https://public.readdy.ai/ai/img_res/eba2976a449230cb840568683386bac4.jpg" alt="Wedding Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="port8">
+<img src="https://public.readdy.ai/ai/img_res/6602d54426ca3a78dab0ef42fadcb01e.jpg" alt="Wedding Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="port9">
+<img src="https://public.readdy.ai/ai/img_res/7f053b780865adadad046dfd0ea870cb.jpg" alt="Wedding Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="port10">
+<img src="https://public.readdy.ai/ai/img_res/8214ece9b28adeb2546918018d69643e.jpg" alt="Wedding Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="port11">
+<img src="https://public.readdy.ai/ai/img_res/4a028fa9df55d0d442826d700ba311bd.jpg" alt="Wedding Photo" class="w-full h-auto rounded">
+</div>
+<div class="masonry-item cursor-pointer" data-img="port12">
+<img src="https://public.readdy.ai/ai/img_res/9c5d18c8cebcf2c9d947b9f7351df4d3.jpg" alt="Wedding Photo" class="w-full h-auto rounded">
+</div>
+</div>
+<div class="text-center mt-6">
+<button class="px-8 py-3 bg-primary text-white rounded-full text-sm font-medium !rounded-button cursor-pointer shadow-md hover:bg-opacity-90 transition-colors duration-300">Load More Photos</button>
+</div>
+</section>
+</main>
+<!-- Tab Bar -->
+<nav class="fixed bottom-0 w-full bg-white border-t border-gray-200 px-2 py-2 grid grid-cols-4 z-40 shadow-lg">
+<a href="https://readdy.ai/home/56f35fab-9324-48b8-a002-f91efb5f78bc/86e6c8c3-4093-40a7-a0f9-f0d72f3ab524" data-readdy="true" class="flex flex-col items-center justify-center cursor-pointer">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-home-5-line text-tertiary"></i>
+</div>
+<span class="text-xs mt-1 text-tertiary">Home</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center cursor-pointer">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-gallery-fill text-primary"></i>
+</div>
+<span class="text-xs mt-1 text-primary font-medium">Portfolio</span>
+</a>
+<a href="https://readdy.ai/home/56f35fab-9324-48b8-a002-f91efb5f78bc/ca66a7a4-9bbc-4033-8ce8-95c5e9e53f72" data-readdy="true" class="flex flex-col items-center justify-center cursor-pointer">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-price-tag-3-line text-tertiary"></i>
+</div>
+<span class="text-xs mt-1 text-tertiary">Packages</span>
+</a>
+<a href="#" class="flex flex-col items-center justify-center cursor-pointer">
+<div class="w-6 h-6 flex items-center justify-center">
+<i class="ri-chat-1-line text-tertiary"></i>
+</div>
+<span class="text-xs mt-1 text-tertiary">Contact</span>
+</a>
+</nav>
+<!-- Photo Modal -->
+<div class="photo-modal" id="photoModal">
+<img src="" alt="Enlarged Wedding Photo" id="modalImage">
+<div class="modal-nav">
+<button id="prevImage" class="cursor-pointer">
+<i class="ri-arrow-left-s-line ri-lg"></i>
+</button>
+<button id="nextImage" class="cursor-pointer">
+<i class="ri-arrow-right-s-line ri-lg"></i>
+</button>
+</div>
+<div class="modal-info">
+<h4 class="text-lg font-medium" id="photoTitle">Beautiful Moment</h4>
+<p class="text-sm opacity-80" id="photoDescription">Emily & David's Wedding - April 2025</p>
+</div>
+<button class="absolute top-4 right-4 w-10 h-10 flex items-center justify-center bg-accent bg-opacity-90 rounded-full text-white cursor-pointer shadow-lg hover:bg-opacity-100 transition-colors duration-300" id="closeModal">
+<i class="ri-close-line ri-lg"></i>
+</button>
+<button class="absolute top-4 left-4 w-10 h-10 flex items-center justify-center bg-tertiary bg-opacity-90 rounded-full text-white cursor-pointer shadow-lg hover:bg-opacity-100 transition-colors duration-300" id="shareModal">
+<i class="ri-share-line ri-lg"></i>
+</button>
+</div>
+<!-- Floating Action Button -->
+<button class="fixed right-4 bottom-20 w-12 h-12 flex items-center justify-center bg-accent rounded-full text-white shadow-lg z-40 cursor-pointer hover:bg-opacity-90 transition-colors duration-300">
+<i class="ri-filter-3-fill ri-lg"></i>
+</button>
+<script>
+// Category buttons
+const categoryButtons = document.querySelectorAll('.category-scroll button');
+categoryButtons.forEach(button => {
+button.addEventListener('click', () => {
+categoryButtons.forEach(btn => {
+btn.classList.remove('bg-primary', 'text-white');
+btn.classList.add('bg-secondary', 'text-primary');
+});
+button.classList.remove('bg-secondary', 'text-primary');
+button.classList.add('bg-primary', 'text-white');
+});
+});
+// Photo Modal
+const photoItems = document.querySelectorAll('.masonry-item, .collection-item');
+const photoModal = document.getElementById('photoModal');
+const modalImage = document.getElementById('modalImage');
+const closeModal = document.getElementById('closeModal');
+const prevImage = document.getElementById('prevImage');
+const nextImage = document.getElementById('nextImage');
+const photoTitle = document.getElementById('photoTitle');
+const photoDescription = document.getElementById('photoDescription');
+let currentIndex = 0;
+const photos = Array.from(photoItems);
+// Sample photo data
+const photoData = {
+'port1': { title: 'First Look', description: 'Emily & David\'s Wedding - April 2025' },
+'port2': { title: 'Sunset Kiss', description: 'Jessica & Michael\'s Wedding - March 2025' },
+'port3': { title: 'Wedding Rings', description: 'Custom Detail Shot' },
+'port4': { title: 'Candid Laughter', description: 'Reception Moments' },
+'port5': { title: 'Walking Down the Aisle', description: 'Ceremony Highlights' },
+'port6': { title: 'Silhouette at Sunset', description: 'Artistic Wedding Portraits' },
+'port7': { title: 'First Dance', description: 'Reception Highlights' },
+'port8': { title: 'Bridal Portrait', description: 'Pre-Ceremony Session' },
+'port9': { title: 'Groom Portrait', description: 'Pre-Ceremony Session' },
+'port10': { title: 'Venue Decoration', description: 'Luxury Wedding Setup' },
+'port11': { title: 'Wedding Cake', description: 'Reception Details' },
+'port12': { title: 'Bridesmaids', description: 'Pre-Ceremony Session' },
+'eng1': { title: 'Park Engagement', description: 'Sarah & James - February 2025' },
+'eng2': { title: 'Urban Love', description: 'Downtown Engagement Session' },
+'eng3': { title: 'Beach Sunset', description: 'Coastal Engagement Photos' },
+'eng4': { title: 'Mountain Adventure', description: 'Hiking Engagement Session' },
+'eng5': { title: 'Coffee Shop Date', description: 'Casual Engagement Moments' },
+'eng6': { title: 'Vineyard Romance', description: 'Wine Country Engagement' },
+'eng7': { title: 'Garden Stroll', description: 'Botanical Garden Session' },
+'eng8': { title: 'Winter Wonderland', description: 'Snowy Engagement Photos' },
+'eng9': { title: 'Library Love Story', description: 'Literary Engagement Session' },
+'emily1': { title: 'Bridal Portrait', description: 'Emily & David\'s Wedding - April 2025' },
+'emily2': { title: 'Romantic Kiss', description: 'Emily & David\'s Wedding - April 2025' },
+'emily3': { title: 'Ring Detail', description: 'Emily & David\'s Wedding - April 2025' },
+'emily4': { title: 'Candid Moment', description: 'Emily & David\'s Wedding - April 2025' },
+'emily5': { title: 'Ceremony', description: 'Emily & David\'s Wedding - April 2025' },
+'emily6': { title: 'Artistic Shot', description: 'Emily & David\'s Wedding - April 2025' },
+'jessica1': { title: 'Garden Ceremony', description: 'Jessica & Michael\'s Wedding - March 2025' },
+'jessica2': { title: 'First Dance', description: 'Jessica & Michael\'s Wedding - March 2025' },
+'jessica3': { title: 'Cake Cutting', description: 'Jessica & Michael\'s Wedding - March 2025' },
+'jessica4': { title: 'Wedding Party', description: 'Jessica & Michael\'s Wedding - March 2025' },
+'jessica5': { title: 'Vow Exchange', description: 'Jessica & Michael\'s Wedding - March 2025' },
+'jessica6': { title: 'Reception Decor', description: 'Jessica & Michael\'s Wedding - March 2025' }
+};
+photoItems.forEach((item, index) => {
+item.addEventListener('click', () => {
+currentIndex = index;
+const imgSrc = item.querySelector('img').src;
+modalImage.src = imgSrc;
+// Set photo info if available
+const photoId = item.getAttribute('data-img');
+if (photoData[photoId]) {
+photoTitle.textContent = photoData[photoId].title;
+photoDescription.textContent = photoData[photoId].description;
+} else {
+photoTitle.textContent = 'Beautiful Moment';
+photoDescription.textContent = 'Wedding Photography';
+}
+photoModal.style.display = 'flex';
+document.body.style.overflow = 'hidden';
+});
+});
+closeModal.addEventListener('click', () => {
+photoModal.style.display = 'none';
+document.body.style.overflow = 'auto';
+});
+photoModal.addEventListener('click', (e) => {
+if (e.target === photoModal) {
+photoModal.style.display = 'none';
+document.body.style.overflow = 'auto';
+}
+});
+prevImage.addEventListener('click', () => {
+currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+const imgSrc = photos[currentIndex].querySelector('img').src;
+modalImage.src = imgSrc;
+// Update photo info
+const photoId = photos[currentIndex].getAttribute('data-img');
+if (photoData[photoId]) {
+photoTitle.textContent = photoData[photoId].title;
+photoDescription.textContent = photoData[photoId].description;
+}
+});
+nextImage.addEventListener('click', () => {
+currentIndex = (currentIndex + 1) % photos.length;
+const imgSrc = photos[currentIndex].querySelector('img').src;
+modalImage.src = imgSrc;
+// Update photo info
+const photoId = photos[currentIndex].getAttribute('data-img');
+if (photoData[photoId]) {
+photoTitle.textContent = photoData[photoId].title;
+photoDescription.textContent = photoData[photoId].description;
+}
+});
+// Handle keyboard navigation
+document.addEventListener('keydown', (e) => {
+if (photoModal.style.display === 'flex') {
+if (e.key === 'ArrowLeft') {
+prevImage.click();
+} else if (e.key === 'ArrowRight') {
+nextImage.click();
+} else if (e.key === 'Escape') {
+closeModal.click();
+}
+}
+});
+// Share button functionality
+document.getElementById('shareModal').addEventListener('click', (e) => {
+e.stopPropagation();
+// In a real implementation, this would open a share dialog
+const tempDiv = document.createElement('div');
+tempDiv.className = 'fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white p-4 rounded-lg shadow-xl z-60';
+tempDiv.innerHTML = `
+<h4 class="text-primary font-medium mb-3">Share this photo</h4>
+<div class="flex space-x-4 justify-center mb-3">
+<button class="w-10 h-10 flex items-center justify-center bg-blue-500 rounded-full text-white">
+<i class="ri-facebook-fill"></i>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-pink-500 rounded-full text-white">
+<i class="ri-instagram-fill"></i>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-blue-400 rounded-full text-white">
+<i class="ri-twitter-x-fill"></i>
+</button>
+<button class="w-10 h-10 flex items-center justify-center bg-green-500 rounded-full text-white">
+<i class="ri-whatsapp-fill"></i>
+</button>
+</div>
+<button class="w-full py-2 bg-tertiary text-white rounded !rounded-button">Copy Link</button>
+`;
+document.body.appendChild(tempDiv);
+// Remove the share dialog when clicking outside
+setTimeout(() => {
+document.addEventListener('click', function removeShare(e) {
+if (!tempDiv.contains(e.target)) {
+tempDiv.remove();
+document.removeEventListener('click', removeShare);
+}
+});
+}, 100);
+});
+</script>
+</body>
+</html>
